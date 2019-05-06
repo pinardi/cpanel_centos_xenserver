@@ -61,9 +61,10 @@ yum install -y  check-mk-agent xinetd
 systemctl enable xinetd
 systemctl start xinetd
 ```
-## check usiing telnet
+check usiing telnet
 telnet localhost 6556
-# CPANEL
+
+## CPANEL
 1	Install Cpanel
 ```bash
 cd /home 
@@ -109,7 +110,9 @@ Home » Clusters » DNS Cluster
 DNS Role : Synchronize Changes
 12	
 Install Auto SSL Provider Let's Encrypt
-# /scripts/install_lets_encrypt_autossl_provider
+```bash
+/scripts/install_lets_encrypt_autossl_provider
+```
 Home » SSL/TLS » Manage Auto SSL
 Tab Providers
 Centang Let's Encrypt di Choose an AutoSSL provider
@@ -121,27 +124,29 @@ Klik Save
 CLOUDLINUX
 1	
 Install CloudLinux
-# wget https://repo.cloudlinux.com/cloudlinux/sources/cln/cldeploy
-# sh cldeploy -k <CLKEY>
-# reboot
+```bash
+wget https://repo.cloudlinux.com/cloudlinux/sources/cln/cldeploy
+ssh cldeploy -k <CLKEY>
+reboot
+```
 2	
 Update Key CL
 Jika menggunakan template VM yang sudah terinstall CloudLinux sebelumnya, update Key Cloudlinux
-
+```bash
 ## cldetect --update-new-key <CLKEY>
- 	 
+```
 SOFTACULOUS
 1	
 Enable ioncube
 
 WHM -> Tweak Settings -> PHP --> "Enable ioncube"
 Install Softaculous
-
-# wget -N http://files.softaculous.com/install.sh
-# chmod 755 install.sh
-# ./install.sh --quick
+```bash
+wget -N http://files.softaculous.com/install.sh
+chmod 755 install.sh
+./install.sh --quick
 Configure Softaculous , enable script
-
+```
 WHM -> Plugins -> Softaculous-Instant Installs -> Software -> General Scripts 
  
 - WordPress
@@ -161,9 +166,9 @@ WHM -> Plugins -> Softaculous-Instant Installs -> Software -> General Scripts
 PHP Selector
 1	
 Install php Selector
-
+```bash
 # yum groupinstall alt-php
- 	 
+```
 MultiPHP ini
 1	
 Tambahkan setting PHP disable_functions
@@ -176,48 +181,50 @@ Icon
 Easy Apache
 1	
 Setting default easy apache
-
+```bash
 WHM -> Softare -> Easy
 Pilih, upload template .json dari http://wiki.jcamp.biz/download/attachments/15925355/EA4-mbog.json?api=v2
 Sesuaikan/rubah/edit jika perlu.
- 
+```
 
- 	 
 CageFs
 1	
 Install CageFS
+```bash
+yum install cagefs -y
+cagefstcl --init
+```
 
-# yum install cagefs -y
-# cagefstcl --init
- 	 
 Modsec
 1	
 Dari salt master eksekusi command berikut:
-
+```bash
 state modsec
 salt 'hostname' state.sls modsec
- 	 
+```
 MODSEC CMC
  	 
 1	
 Install ModSec Menu
+```bash
+cd /root
+wget https://download.configserver.com/cmc.tgz
+tar -xf cmc.tgz
+cd cmc
+sh install.sh
+```
 
-# cd /root
-# wget https://download.configserver.com/cmc.tgz
-# tar -xf cmc.tgz
-# cd cmc
-# sh install.sh
- 	 
 CSF
 1	
 Install CSF
-
-# wget https://download.configserver.com/csf.tgz
-# tar -xvzf csf.tgz 
-# cd csf
-# sh install.sh 
-# perl /usr/local/csf/bin/csftest.pl
-# vi /etc/csf/csf.conf
+```bash
+wget https://download.configserver.com/csf.tgz
+tar -xvzf csf.tgz 
+cd csf
+sh install.sh 
+perl /usr/local/csf/bin/csftest.pl
+vi /etc/csf/csf.conf
+```
 Allow port
 
 3322,4505,4506,6556
@@ -225,27 +232,29 @@ deaktifasi testing mode
 
 TESTING = "0"
  	 
-LiteSpeed PLUGINS
- 	 
+LiteSpeed PLUGINS 	 
 1	
 Install LSWS CPANEL/WHM Plugin
+```bash
+cd;
+wget https://www.litespeedtech.com/packages/cpanel/lsws_whm_plugin_install.sh
+sh lsws_whm_plugin_install.sh
+```
 
-# cd;
-# wget https://www.litespeedtech.com/packages/cpanel/lsws_whm_plugin_install.sh
-# sh lsws_whm_plugin_install.sh
- 	 
 Cloudflare PLUGINS	 	 
 1	
 Install cloudflare plugins
 
-# wget https://raw.githubusercontent.com/cloudflare/CloudFlare-CPanel/master/cloudflare.install.sh
-# chmod +x cloudflare.install.sh
-# ./cloudflare.install.sh -k 80d890cf6852c248adeafec556873171 -n 'PT JC Indonesia'
- 	 
+```bash
+wget https://raw.githubusercontent.com/cloudflare/CloudFlare-CPanel/master/cloudflare.install.sh
+chmod +x cloudflare.install.sh
+./cloudflare.install.sh -k 80d890cf6852c248adeafec556873171 -n 'PT JC Indonesia'
+```
 Sitepad plugins	 	 
 1	
 Install sitepad plugins
-
-# wget -N http://files.sitepad.com/install.sh
-# chmod 755 install.sh
-# ./install.sh
+```bash
+wget -N http://files.sitepad.com/install.sh
+chmod 755 install.sh
+./install.sh
+```
